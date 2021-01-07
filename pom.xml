@@ -70,7 +70,7 @@
             <version>1.18.16</version>
             <scope>provided</scope>
         </dependency>
-        <!-- для запросов были автоматически подгружены классы в папку generate-sources-->
+        <!-- для запросов были автоматически подгружены классы в папку generate-sources (отмечаем папку -> Generated sources root)-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>

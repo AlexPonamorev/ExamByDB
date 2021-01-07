@@ -2,8 +2,15 @@ package application.dao;
 
 import application.Climber;
 import application.Dao;
+import application.Group;
+import application.specifications.Specification;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class ClimberDao implements Dao<Climber> {
@@ -35,5 +42,14 @@ public class ClimberDao implements Dao<Climber> {
         return climberList;
     }
 
+    public List<Climber> getBySpecification(Specification<Climber> specification) {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Climber> criteriaQuery = builder.createQuery(Climber.class); // создан запрос
+        // корневой объект
+        Root<Climber> root = criteriaQuery.from(Climber.class);
+        Predicate condition = specification.getPredicate(root, builder);
+        criteriaQuery.where(condition);
+        return manager.createQuery(criteriaQuery).getResultList();
+    }
 
 }

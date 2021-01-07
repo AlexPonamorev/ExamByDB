@@ -3,12 +3,15 @@ package application;
 import application.dao.ClimberDao;
 import application.dao.GroupDao;
 import application.dao.MountainDao;
+import application.specifications.Specification;
+import application.specifications.climberSpecifications.getByAgeFromClimber;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -80,6 +83,10 @@ public class Application {
         // запросы
         System.out.println(mountainDao.getMountainsByCountry("Таджикистан"));
         System.out.println(climberDao.getClimbersByAge(25, 35));
+
+        Specification specification = new getByAgeFromClimber(25, 35);
+        List<Climber> listByAgeFromTo =  climberDao.getBySpecification(specification);
+        System.out.println("Запрос listByAgeFromTo = " + listByAgeFromTo);
 
         System.out.println(groupDao.getGroupsByMountainName("Джомолунгма"));
         System.out.println(groupDao.getGroupsByOpen(true));
