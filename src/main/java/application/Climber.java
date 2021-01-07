@@ -28,7 +28,7 @@ public final class Climber extends ID {
         groupList = new ArrayList<>(7);
     }
 
-    public void setClimberName(String climberName) {
+    public void setClimberName(String climberName) {//**
         if (climberName == null || climberName.trim().length() < 3 || climberName.trim().length() > 30)
             throw new IllegalArgumentException("Имя альпиниста не должно быть короче 3 или длиннее 30 символов!");
         this.climberName = climberName;
