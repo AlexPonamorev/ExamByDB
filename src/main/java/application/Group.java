@@ -19,7 +19,7 @@ public final class Group extends ID {
             inverseJoinColumns = @JoinColumn(name = "climbers_id"))
     // одна группа - много студентов
     @JoinColumn(nullable = true)
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany( fetch = FetchType.EAGER)
     // CascadeType.ALL - доступно каскадное обновление добавление и удаление студентов
     private List<Climber> climberList;
 

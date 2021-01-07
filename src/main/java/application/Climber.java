@@ -17,8 +17,8 @@ public final class Climber extends ID {
 
 
     //много альпинистов - в разные группы // связаны по полю "climbersList"
-
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "climberList"/*,cascade = CascadeType.ALL*/)
+    //
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "climberList")
     private List<Group> groupList;
 
     public Climber(String climberName, String climberAddress, int climberAge) {
@@ -65,7 +65,8 @@ public final class Climber extends ID {
         if (this == o) return true;
         if (!(o instanceof Climber)) return false;
         Climber climber = (Climber) o;
-        return climberAge == climber.climberAge && climberName.equals(climber.climberName) && climberAddress.equals(climber.climberAddress) && groupList.equals(climber.groupList);
+        return climberAge == climber.climberAge && climberName.equals(climber.climberName)
+                && climberAddress.equals(climber.climberAddress) && groupList.equals(climber.groupList);
     }
 
     @Override
